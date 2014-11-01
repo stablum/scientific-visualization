@@ -52,3 +52,11 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# data
+cars.csv
+
+# vim
+*.swp
+*.swo
+*~
