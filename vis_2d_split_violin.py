@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-err,warn,info = __import__('log').setup("vis_2d_split")
+err,warn,info = __import__('log').setup("vis_2d_split_violin")
 import numpy as np
 import pylab
 import matplotlib.pyplot as plt
@@ -80,8 +80,8 @@ def show(df):
         ax.xaxis.set_ticks(np.arange(min(years), max(years)+1, 1.0))
         ax.set_ylabel(ylabel)
         #import pdb; pdb.set_trace()
-        #violin_data = [ getattr(df.query("year=="+str(yr)),ylabel) for yr in years_uniq]
-        #ax.violinplot(violin_data, years_uniq,showmedians=True,showextrema=False,points=1000,bw_method="silverman")
+        violin_data = [ getattr(df.query("year=="+str(yr)),ylabel) for yr in years_uniq]
+        ax.violinplot(violin_data, years_uniq,showmedians=True,showextrema=False,points=1000,bw_method="silverman")
         for i,m in enumerate(markers):
             scatter = ax.scatter(xs[i], ys[i], s=s[i],c=c[i],alpha=0.2,marker=m)
         cbar = plt.colorbar(mappable,ax=ax)

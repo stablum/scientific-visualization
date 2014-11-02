@@ -19,6 +19,7 @@ def available_commands():
     return [
         '3d',
         '2d_split',
+        '2d_split_violin',
     ]
 
 def usage():
