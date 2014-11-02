@@ -21,6 +21,23 @@ def markers_specs():
         'Europe': 's',
     }
 
+def markers_offsets_specs():
+    return {
+        'o': 0.2,
+        's': 0.0,
+        '*': -0.2
+    }
+
+def get_markers_offsets(markers):
+    specs = markers_offsets_specs()
+    markers_offsets = [
+        specs[m]
+        for m 
+        in markers
+    ]
+    return np.array(markers_offsets)
+    
+
 def get_markers(origin):
     ret = origin
     for before,after in markers_specs().items():
@@ -36,9 +53,11 @@ def show(df):
     for ax in axs:
         ax.set_xlabel("year")
     
+    
     xs = df.year
     
     markers = get_markers(df.origin)
+    xs = xs + get_markers_offsets(markers)
 
     s = np.power(df.cylinders,2.6)*4
     MPG_norm,MPG_min,MPG_max = normalize(df.MPG)
