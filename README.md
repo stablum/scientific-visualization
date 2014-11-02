@@ -11,4 +11,5 @@ set up
 run
 ---
 
+ `python ./main.py 2d_split`
  `python ./main.py 3d`
