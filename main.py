@@ -17,7 +17,8 @@ def main():
 
 def available_commands():
     return [
-        '3d'
+        '3d',
+        '2d_split',
     ]
 
 def usage():
