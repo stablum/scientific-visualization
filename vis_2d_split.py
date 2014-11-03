@@ -84,16 +84,18 @@ def show(df):
         #ax.violinplot(violin_data, years_uniq,showmedians=True,showextrema=False,points=1000,bw_method="silverman")
         for i,m in enumerate(markers):
             scatter = ax.scatter(xs[i], ys[i], s=s[i],c=c[i],alpha=0.2,marker=m)
+
         cbar = plt.colorbar(mappable,ax=ax)
         cbar.set_label("MPG")
-        circle = plt.Line2D(range(1), range(1), color="white", marker='o', markerfacecolor="white")
+
+    circle = plt.Line2D(range(1), range(1), color="white", marker='o', markerfacecolor="white")
         
-        mobjs = []
-        for m in markers_specs().values():
-            mobj = plt.Line2D(range(1), range(1), color="white", marker=m, markerfacecolor="white")
-            mobjs.append(mobj)
+    mobjs = []
+    for m in markers_specs().values():
+        mobj = plt.Line2D(range(1), range(1), color="white", marker=m, markerfacecolor="white")
+        mobjs.append(mobj)
         
-        ax.legend([circle]+mobjs,['marker size: cylinders']+markers_specs().keys())
+    axs[0].legend([circle]+mobjs,['marker size: cylinders']+markers_specs().keys())
 
     info("end.")
     pylab.show()

@@ -6,7 +6,7 @@ import pylab
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
-cmap=plt.get_cmap('gnuplot2')
+cmap=plt.get_cmap('brg')
 
 def normalize(m):
     _min = np.min(m)
@@ -48,7 +48,10 @@ def show(df):
     info("show")
     
     fig = plt.figure()
+    
     axs = [ fig.add_subplot(n) for n in [211, 212]]
+
+    axs[0].set_title("violin plot: trends in car manufacturing")
 
     for ax in axs:
         ax.set_xlabel("year")
@@ -86,14 +89,14 @@ def show(df):
             scatter = ax.scatter(xs[i], ys[i], s=s[i],c=c[i],alpha=0.2,marker=m)
         cbar = plt.colorbar(mappable,ax=ax)
         cbar.set_label("MPG")
-        circle = plt.Line2D(range(1), range(1), color="white", marker='o', markerfacecolor="white")
-        
-        mobjs = []
-        for m in markers_specs().values():
-            mobj = plt.Line2D(range(1), range(1), color="white", marker=m, markerfacecolor="white")
-            mobjs.append(mobj)
-        
-        ax.legend([circle]+mobjs,['marker size: cylinders']+markers_specs().keys())
 
+    circle = plt.Line2D(range(1), range(1), color="white", marker='o', markerfacecolor="white")
+        
+    mobjs = []
+    for m in markers_specs().values():
+        mobj = plt.Line2D(range(1), range(1), color="white", marker=m, markerfacecolor="white")
+        mobjs.append(mobj)
+        
+    axs[0].legend([circle]+mobjs,['marker size: cylinders']+markers_specs().keys())
     info("end.")
     pylab.show()
