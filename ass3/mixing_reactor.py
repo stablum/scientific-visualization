@@ -16,13 +16,28 @@ reader.Update()
 
 data = reader.GetOutput()
 
-outline = vtk.vtkStructuredGridOutlineFilter()
-outline.SetInputConnection(reader.GetOutputPort())
-mapOutline = vtk.vtkPolyDataMapper()
-mapOutline.SetInputConnection(outline.GetOutputPort())
-outlineActor = vtk.vtkActor()
-outlineActor.SetMapper(mapOutline)
-outlineActor.GetProperty().SetColor(0,0,0)
+geom = vtk.vtkImageDataGeometryFilter()
+geom.SetImput(data)
+
+
+
+
+
+mapper = vtkDataSetMapper()
+mapper.SetInput(geom)
+
+actor = vtk.vtkActor()
+actor.SetMapper(mapper)
+
+##outline = vtk.vtkStructuredGridOutlineFilter()
+##outline.SetInputConnection(reader.GetOutputPort())
+##mapOutline = vtk.vtkPolyDataMapper()
+##mapOutline.SetInputConnection(outline.GetOutputPort())
+##outlineActor = vtk.vtkActor()
+##outlineActor.SetMapper(mapOutline)
+##outlineActor.GetProperty().SetColor(0,0,0)
 
 renWin.SetSize(300,200)
+renWin.Render()
 iren.Initialize()
+iren.Start()
